@@ -23,16 +23,18 @@ export const SignUp = () =>{
         setPassword(e.target.value); 
     }
     const handlePasswordConfirm = (e) =>{
-        setConfirmPassword(e.target.value); 
+        setPasswordConfirm(e.target.value); 
     }
 
     const handleSubmit = async (e) => 
     {
-        e.preventDefault(); 
+        e.preventDefault(); // check to see if passwords match
         if(password !== passwordConfirm){
-            alert('passwords have to match!!'); 
+            alert("Passwords do not match"); 
             return; 
         }
+        
+        
 
         try{
             const user = { name, email, password };
