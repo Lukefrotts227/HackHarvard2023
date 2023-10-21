@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 
 
-def get_mongo_db_collection(collection): 
+def get_mongo_db_collection(): 
     dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 
     load_dotenv(dotenv_path)
@@ -15,8 +15,8 @@ def get_mongo_db_collection(collection):
     try: 
         client = MongoClient(MONGODB_URI)
         db = client.get_database('cluster0')
-        collection = db[collection]
-        return collection
+        
+        return db
     except Exception as e:
         print("Error occured: ", e)
         return None

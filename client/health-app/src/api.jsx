@@ -24,7 +24,7 @@ export const getWeight = async (user)=>{
     return response; 
 }; 
 export const getHeight = async (user) =>{
-    const response = await axios.get(`${API_URL}/users/getWeight/${user}`); 
+    const response = await axios.get(`${API_URL}/users/getHeight/${user}`); 
     return response; 
 }; 
 
