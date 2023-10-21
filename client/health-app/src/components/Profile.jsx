@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'; 
-import { getHeight, setHeight, getHeight, getWeight } from '../api'
+import { setHeight, getHeight, getWeight } from '../api'
 
 export const Profile = () =>{
     const [height, setHeight] = useState(0); 
