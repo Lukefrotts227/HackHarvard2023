@@ -1,35 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 
-function App() {
-  const [count, setCount] = useState(0)
+import React, { useState, useEffect} from "react";
+
+import { BrowserRouter as Router, Route, Link, Routes} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { InputForm } from "./components/inputform";
+
+export default function App() {
 
   return (
     <>
-      <div className="text-center text-bold grid grid-place-center">
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      
-      <h1 className = "text-bold text-3xl text-center">Vite + React</h1>
-      <div className="grid place-self-center">
-        <button className="grid place-self-center border bg-red-400 border-black w-36 hover:bg-red-900" onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <main className ='min-h-screen grid bg-gradient-to-t from-slate-400 to-slate-700'> 
+        <section> 
+          <header> 
+          </header>
+        </section>
+      </main>
     </>
   )
 }
 
-export default App
