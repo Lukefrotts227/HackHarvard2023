@@ -6,7 +6,7 @@ export const createUser = async(user) =>{
     return response; 
 }
 export const getUser = async(email,password)=>{
-    const response = await axios.get(`${API_URL}/users/getUser/${email}/${password}`);
+    const response = await axios.post(`${API_URL}/users/getUser`, { email, password });
     return response;
 }
 
