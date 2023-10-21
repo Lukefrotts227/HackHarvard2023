@@ -14,16 +14,16 @@ export const SignUp = () =>{
     const nav = useNavigate();
 
     const handleName = (e) =>{
-        setName(e); 
+        setName(e.target.value); 
     }
     const handleEmail = (e) =>{
-        setEmail(e); 
+        setEmail(e.target.value); 
     }
     const handlePassword = (e) =>{
-        setPassword(e); 
+        setPassword(e.target.value); 
     }
     const handlePasswordConfirm = (e) =>{
-        setConfirmPassword(e); 
+        setConfirmPassword(e.target.value); 
     }
 
     const handleSubmit = async (e) => 
@@ -68,7 +68,7 @@ export const SignUp = () =>{
                         <input className="w-99 border border-gray-400 px-8"
                             type="password" placeholder="ConfirmPassword"
                             onChange={handlePasswordConfirm}  />
-                        <button className="bg-gray-50 text-zinc-950 font-extrabold cursor-pointer px-5 py-2 text-xl">Submit</button>
+                        <button className="bg-gray-50 text-zinc-950 font-extrabold cursor-pointer px-5 py-2 text-xl" onClick={handleSubmit}>Submit</button>
                     </form>
                     <span className="text-center text-bold"><h1>Already have an account click <Link className="hover:text-blue-700 hover:underline" to="/">here</Link></h1></span>
                     

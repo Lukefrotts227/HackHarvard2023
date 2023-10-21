@@ -10,10 +10,10 @@ export const Login = () =>{
     const nav = useNavigate();
 
     const handleEmail = (e) =>{
-        setEmail(e); 
+        setEmail(e.target.value); 
     }
     const handlePassword = (e) =>{
-        setPassword(e); 
+        setPassword(e.target.value); 
     }
 
     const handleSubmit = async (e) =>{
@@ -42,7 +42,7 @@ export const Login = () =>{
                     <input className="w-99 border border-gray-400 px-8"  
                         type ="password" placeholder="Password"
                         onChange={handlePassword}/>
-                    <button className="bg-gray-50 text-zinc-950 font-extrabold cursor-pointer px-5 py-2 text-xl">Submit</button>
+                    <button className="bg-gray-50 text-zinc-950 font-extrabold cursor-pointer px-5 py-2 text-xl" onClick={handleSubmit}>Submit</button>
                 </form>
                 <span className="text-center text-bold"><h1>Don't have an account register <Link className="hover:text-blue-700 hover:underline" to="/signup">here</Link></h1></span>
 
