@@ -69,7 +69,7 @@ def set_height(user):
         return jsonify({"message": "Height updated"})
     return jsonify({"message": "User not found or height update failed"}, 404)
 
-@app.route('/users/getName/<users>', methods=['GET', 'POST'])
+@app.route('/users/getName/<user>', methods=['GET', 'POST'])
 def get_name(user): 
     user_data = database.find_one({"email": user})
     if user_data and "name" in user_data:
