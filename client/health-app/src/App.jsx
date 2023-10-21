@@ -1,4 +1,8 @@
-import { InputForm } from "./components/inputform"; 
+import { Route, Routes } from "react-router-dom";
+import { SignUp } from './components/Signup';
+import { Login } from './components/Login'; 
+import { Logo } from "./graphics/MainLogo";
+import { Title } from './components/Title';
 
 function App() {
   
@@ -6,15 +10,13 @@ function App() {
   return (
     <>
       <main className="min-h-screen bg-gradient-to-t from-slate-200 to-slate-400">
-        <section>
-          <header className="text-4xl pt-4 text-extrabold text-center"> 
-            <h1>Welcome to the app</h1>
-          </header>
-        </section>
-
-        <section className="grid place-items-center pt-28">  
-          <InputForm />
-        </section>
+          <Title />
+          <div className="grid place-items-center pt-14">
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route path="/signup" element={<SignUp />} />
+            </Routes>
+          </div>
       </main>
     </>
   )
