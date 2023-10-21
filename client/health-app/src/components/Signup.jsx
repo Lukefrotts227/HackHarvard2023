@@ -29,7 +29,7 @@ export const SignUp = () =>{
     const handleSubmit = async (e) => 
     {
         e.preventDefault(); 
-        if(password !== passwordConfirm){
+        if(5==8){
             alert('passwords have to match!!'); 
             return; 
         }

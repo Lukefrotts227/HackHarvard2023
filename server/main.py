@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from db import get_mongo_db_collection
 
@@ -14,36 +14,67 @@ except Exception as e:
 app = Flask(__name__)
 CORS(app)
 
-database = database.get_database("users")
+database = database["users"]
+
 
 
 @app.route('/users/createUser', methods=['POST'])
-def create_user(): 
-    pass 
+def create_user():     
+    user_data = request.get_json()
+    database.insert_one(user_data)
+    return jsonify({"message": "User created"}) 
 
 @app.route('/users/getUser/<email>/<password>', methods=['GET'])
 def get_user(email, password): 
-    pass 
+    user_data = database.find_one({"email": email, "password": password})
+    if user_data:
+        return jsonify(user_data)
+    return jsonify({"message": "User not found"}, 404) 
+
 
 @app.route('/users/getWeight/<user>', methods=['GET'])
 def get_weight(user): 
-    pass
+    user_data = database.find_one({"email": user})
+    if user_data and "weight" in user_data:
+        return jsonify({"weight": user_data["weight"]})
+    return jsonify({"message": "User not found or weight data missing"}, 404)
 
 @app.route('/users/getHeight/<user>', methods=['GET'])
 def get_height(user): 
-    pass
+    user_data = database.find_one({"email": user})
+    if user_data and "height" in user_data:
+        return jsonify({"height": user_data["height"]})
+    return jsonify({"message": "User not found or height data missing"}, 404)
 
-@app.route('/users/setWeight/<user>', methods=['POST'])
+@app.route('/users/setWeight/<user>', methods=['POST', 'GET'])
 def set_weight(user): 
-    pass
+    weight_data = request.get_json()
+    if not weight_data or "weight" not in weight_data:
+        return jsonify({"message": "Invalid request data"}, 400)  # Return a 400 Bad Request response
 
-@app.route('/users/setHeight/<user>', methods=['POST'])
+    result = database.update_one({"email": user}, {"$set": {"weight": weight_data["weight"]}})
+    if result.modified_count > 0:
+        return jsonify({"message": "Weight updated"})
+    return jsonify({"message": "User not found or weight update failed"}, 404)
+
+
+@app.route('/users/setHeight/<user>', methods=['POST', 'GET'])
 def set_height(user): 
-    pass
+    height_data = request.get_json()
+    if not height_data or "height" not in height_data:
+        return jsonify({"message": "Invalid request data"}, 400)  # Return a 400 Bad Request response
 
-@app.route('/users/getName/<users>', methods=['GET'])
+    result = database.update_one({"email": user}, {"$set": {"height": height_data["height"]}})
+    if result.modified_count > 0:
+        return jsonify({"message": "Height updated"})
+    return jsonify({"message": "User not found or height update failed"}, 404)
+
+@app.route('/users/getName/<users>', methods=['GET', 'POST'])
 def get_name(user): 
-    pass
+    user_data = database.find_one({"email": user})
+    if user_data and "name" in user_data:
+        return jsonify({"name": user_data["name"]})
+    return jsonify({"message": "User not found or name data missing"}, 404)
 
 
 if __name__ == "__main__":
