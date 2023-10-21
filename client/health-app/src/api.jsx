@@ -10,6 +10,8 @@ export const getUser = async(email,password)=>{
     return response;
 }
 
+
+
 export const setWeight = async (user,weight)=>{
     const response = await axios.post(`${API_URL}/users/setWeight/${user}`, weight); 
     return response; 
@@ -31,4 +33,13 @@ export const getHeight = async (user) =>{
 export const getName = async (user) =>{
     const response = await axios.get(`${API_URL}/users/getName/${user}`); 
     return response; 
+}
+
+export const getUserID = async (user) =>{
+    const response = await axios.get(`${API_URL}/users/getUserID/${user}`)
+    return response
+}
+export const setUserID = async (user) =>{
+    const response = await axios.get(`${API_URL}/users/setUserID/${user}`)
+    return response
 }
