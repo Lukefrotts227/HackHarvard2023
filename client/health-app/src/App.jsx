@@ -3,6 +3,7 @@ import { SignUp } from './components/Signup';
 import { Login } from './components/Login'; 
 import { Logo } from "./graphics/MainLogo";
 import { Title } from './components/Title';
+import { Profile } from "./components/Profile";
 
 function App() {
   
@@ -15,6 +16,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
+              <Route path="/profile" element={<Profile />} />
             </Routes>
           </div>
       </main>
