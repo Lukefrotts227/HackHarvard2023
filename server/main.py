@@ -1,3 +1,4 @@
+#main.py
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from db import get_mongo_db_collection
@@ -15,7 +16,6 @@ app = Flask(__name__)
 
 CORS(app, origins=["http://127.0.0.1:5173"], supports_credentials=True)
 
-
 database = database["users"]
 
 
@@ -26,16 +26,13 @@ def create_user():
     database.insert_one(user_data)
     return jsonify({"message": "User created"}) 
 
-@app.route('/users/getUser', methods=['POST'])
-def get_user(): 
+@app.route('/users/login', methods=['POST'])
+def login_user(): 
     user_data = request.get_json()
-    email = user_data.get("email")
-    password = user_data.get("password")
-    user = database.find_one({"email": email, "password": password})
+    user = database.find_one({"email": user_data["email"]})
     if user:
-        return jsonify(user)
+        return jsonify({"message": "User logged in"})
     return jsonify({"message": "User not found"}, 404)
-
 
 @app.route('/users/getWeight/<user>', methods=['GET'])
 def get_weight(user): 
@@ -62,15 +59,15 @@ def get_age(user):
 def get_FamilyHistory(user): 
     user_data = database.find_one({"email": user})
     if user_data and "familyHistory" in user_data:
-        return jsonify({"familyHistory": user_data["FamilyHistory"]})
+        return jsonify({"familyHistory": user_data["familyHistory"]})
     return jsonify({"message": "User not found or height data missing"}, 404)
 
-@app.route('/users/setWeight/<user>', methods=['POST', 'GET'])
+@app.route('/users/setWeight/<user>', methods=['POST'])
 def set_weight(user): 
     weight_data = request.get_json()
     if not weight_data or "weight" not in weight_data:
-        return jsonify({"message": "Invalid request data"}, 400)  # Return a 400 Bad Request response
-
+        return jsonify({"message": "Invalid request data"}, 400)
+    
     result = database.update_one({"email": user}, {"$set": {"weight": weight_data["weight"]}})
     if result.modified_count > 0:
         return jsonify({"message": "Weight updated"})
@@ -103,11 +100,11 @@ def set_age(user):
 
 @app.route('/users/setFamilyHistory/<user>', methods=['POST', 'GET'])
 def set_familyHistory(user): 
-    height_data = request.get_json()
-    if not height_data or "familyHistory" not in height_data:
+    family_history = request.get_json()
+    if not family_history or "familyHistory" not in family_history:
         return jsonify({"message": "Invalid request data"}, 400)  # Return a 400 Bad Request response
 
-    result = database.update_one({"email": user}, {"$set": {"familyHistory": height_data["familyHistory"]}})
+    result = database.update_one({"email": user}, {"$set": {"familyHistory": family_history["familyHistory"]}})
     if result.modified_count > 0:
         return jsonify({"message": "FamilyHistory updated"})
     return jsonify({"message": "User not found or FamilyHistory update failed"}, 404)
@@ -126,3 +123,4 @@ def options_user():
 
 if __name__ == "__main__":
     app.run(debug=True)
+    
