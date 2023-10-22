@@ -6,7 +6,6 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 
-![](pics/alexgif.gif)
 
 ## Table of Contents
 - [Description](#description)
