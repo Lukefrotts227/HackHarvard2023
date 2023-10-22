@@ -1,6 +1,34 @@
 import React, { useState, useEffect } from 'react'; 
-import { setHeight, getHeight, getWeight, setWeight, setAge, getAge, setFamilyHistory, getFamilyHistory } from '../api';
+import { setHeight, getHeight, getWeight, setWeight, setAge, getAge, setFamilyHistory, getFamilyHistory, } from '../api';
 import { Link } from 'react-router-dom'; 
+const options = {
+  method: 'POST',
+  url: 'https://api.tryterra.co/v2/auth/generateWidgetSession',
+  headers: {
+    accept: 'application/json',
+    'dev-id': 'testingTerra',
+    'content-type': 'application/json',
+    'x-api-key': 'ussv5SAQ53a1nNTxsMr9G41zj2KUhYMk5eDU1hjG'
+  },
+  data: {
+    providers: 'GARMIN,WITHINGS,FITBIT,GOOGLE,OURA,WAHOO,PELOTON,ZWIFT,TRAININGPEAKS,FREESTYLELIBRE,DEXCOM,COROS,HUAWEI,OMRON,RENPHO,POLAR,SUUNTO,EIGHT,APPLE,CONCEPT2,WHOOP,IFIT,TEMPO,CRONOMETER,FATSECRET,NUTRACHECK,UNDERARMOUR',
+    reference_id: 'string',
+    auth_success_redirect_url: 'string',
+    auth_failure_redirect_url: 'string',
+    language: 'en',
+    show_disconnect: true,
+    use_terra_avengers_app: false
+  }
+};
+
+axios
+  .request(options)
+  .then(function (response) {
+    console.log(response.data);
+  })
+  .catch(function (error) {
+    console.error(error);
+  });
 
 export const Profile = () => {
     const [height, setHeight2] = useState(0); 
