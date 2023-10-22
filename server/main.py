@@ -26,12 +26,11 @@ def create_user():
     database.insert_one(user_data)
     return jsonify({"message": "User created"}) 
 
-@app.route('/users/login', methods=['POST'])
-def login_user(): 
-    user_data = request.get_json()
-    user = database.find_one({"email": user_data["email"]})
-    if user:
-        return jsonify({"message": "User logged in"})
+@app.route('/users/getUser/<email>/<password>', methods=['GET'])
+def get_user(email, password): 
+    user_data = database.find_one({"email": email, "password": password})
+    if user_data:
+        return jsonify(user_data)
     return jsonify({"message": "User not found"}, 404)
 
 @app.route('/users/getWeight/<user>', methods=['GET'])
@@ -119,6 +118,17 @@ def get_name(user):
 @app.route('/users/getUser', methods=['OPTIONS'])
 def options_user():
     return '', 200
+
+
+
+@app.route('/direct/getData', methods=['GET'])
+def get_data(data):
+    pass 
+
+@app.route('/direct/sendData', methods=['POST'])
+def send_data(data): 
+    pass
+
 
 
 if __name__ == "__main__":

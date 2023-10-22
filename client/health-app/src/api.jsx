@@ -2,7 +2,7 @@
 import axios from 'axios'; 
 const API_URL = 'http://localhost:5000';
 
-export const createUser = async(user) =>{
+export const createUser = async (user) =>{
     const response = await axios.post(`${API_URL}/users/createUser`, user); 
     return response; 
 }
@@ -85,3 +85,22 @@ export const setUserID = async (user) =>{
     const response = await axios.get(`${API_URL}/users/setUserID/${user}`)
     return response
 }
+
+export const getCongregate = async (user) =>{
+    const response = await axios.get(`${API_URL}/users/getCongregate/${user}`); 
+    return response; 
+}
+export const getLearn = async (user) =>{
+    const reponse = await axios.get(`${API_URL}/users/getLearn/${user}`)
+    return response; 
+}
+
+export const getData = async () =>{
+    const response = await axios.get(`${API_URL}/direct/getData`); 
+    return response
+}
+
+export const sendData = async (data) => {
+    const response = await axios.get(`${API_URL}/direct/sendData`); 
+    return response
+}; 
