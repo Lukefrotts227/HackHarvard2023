@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'; 
 import { setHeight, getHeight, getWeight, setWeight, setAge, getAge, setFamilyHistory, getFamilyHistory, } from '../api';
 import { Link } from 'react-router-dom'; 
+import axios from 'axios';
 const options = {
   method: 'POST',
   url: 'https://api.tryterra.co/v2/auth/generateWidgetSession',
