@@ -103,6 +103,4 @@ export const getData = async () =>{
 export const sendData = async (data) => {
     const response = await axios.get(`${API_URL}/direct/sendData`); 
     return response
-}; 
-
-
+};
