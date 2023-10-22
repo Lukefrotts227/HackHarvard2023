@@ -12,7 +12,9 @@ except Exception as e:
     print(e)
 
 app = Flask(__name__)
-CORS(app)
+
+CORS(app, origins=["http://127.0.0.1:5173"])
+
 
 database = database["users"]
 
@@ -24,13 +26,12 @@ def create_user():
     database.insert_one(user_data)
     return jsonify({"message": "User created"}) 
 
-@app.route('/users/getUser/<user>', methods=['GET'])
-def get_user(user): 
-    user_data = database.find_one({"user": user})
+@app.route('/users/getUser/<email>/<password>', methods=['GET'])
+def get_user(email, password): 
+    user_data = database.find_one({"email": email, "password": password})
     if user_data:
         return jsonify(user_data)
-    return jsonify({"message": "User not found"}, 404) 
-
+    return jsonify({"message": "User not found"}, 404)
 
 @app.route('/users/getWeight/<user>', methods=['GET'])
 def get_weight(user): 
@@ -47,14 +48,14 @@ def get_height(user):
     return jsonify({"message": "User not found or height data missing"}, 404)
 
 @app.route('/users/getAge/<user>', methods=['GET'])
-def get_weight(user): 
+def get_age(user): 
     user_data = database.find_one({"email": user})
     if user_data and "age" in user_data:
         return jsonify({"age": user_data["age"]})
     return jsonify({"message": "User not found or age data missing"}, 404)
 
 @app.route('/users/getFamilyHistory/<user>', methods=['GET'])
-def get_height(user): 
+def get_FamilyHistory(user): 
     user_data = database.find_one({"email": user})
     if user_data and "familyHistory" in user_data:
         return jsonify({"familyHistory": user_data["FamilyHistory"]})
@@ -85,7 +86,7 @@ def set_height(user):
 
 
 @app.route('/users/setAge/<user>', methods=['POST', 'GET'])
-def set_weight(user): 
+def set_age(user): 
     weight_data = request.get_json()
     if not weight_data or "age" not in weight_data:
         return jsonify({"message": "Invalid request data"}, 400)  # Return a 400 Bad Request response
@@ -97,7 +98,7 @@ def set_weight(user):
 
 
 @app.route('/users/setFamilyHistory/<user>', methods=['POST', 'GET'])
-def set_height(user): 
+def set_familyHistory(user): 
     height_data = request.get_json()
     if not height_data or "familyHistory" not in height_data:
         return jsonify({"message": "Invalid request data"}, 400)  # Return a 400 Bad Request response
