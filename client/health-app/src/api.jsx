@@ -62,3 +62,15 @@ export const setUserID = async (user) =>{
     const response = await axios.get(`${API_URL}/users/setUserID/${user}`)
     return response
 }
+
+
+
+export const getData = async () =>{
+    const response = await axios.get(`${API_URL}/direct/getData`); 
+    return response
+}
+
+export const sendData = async (data) => {
+    const response = await axios.get(`${API_URL}/direct/sendData`); 
+    return response
+}; 

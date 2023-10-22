@@ -121,5 +121,16 @@ def options_user():
     return '', 200
 
 
+
+@app.route('/direct/getData', methods=['GET'])
+def get_data(data):
+    pass 
+
+@app.route('/direct/sendData', methods=['POST'])
+def send_data(data): 
+    pass
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)
