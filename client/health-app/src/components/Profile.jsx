@@ -30,6 +30,10 @@ export const Profile = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault(); 
+        if(!(familyHistory < 10 && familyHistory > 1)){
+            alert('must be between 1 and 10')
+            return; 
+        }
         try {
             const response = await setWeight(user, weight); 
             const response2 = await setHeight(user, height);  
