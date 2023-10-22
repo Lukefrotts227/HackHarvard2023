@@ -24,9 +24,9 @@ def create_user():
     database.insert_one(user_data)
     return jsonify({"message": "User created"}) 
 
-@app.route('/users/getUser/<email>/<password>', methods=['GET'])
-def get_user(email, password): 
-    user_data = database.find_one({"email": email, "password": password})
+@app.route('/users/getUser/<user>', methods=['GET'])
+def get_user(user): 
+    user_data = database.find_one({"user": user})
     if user_data:
         return jsonify(user_data)
     return jsonify({"message": "User not found"}, 404) 
