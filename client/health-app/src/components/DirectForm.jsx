@@ -4,7 +4,10 @@ export const DirectFrom = () =>{
 
     return(
         <main>
-            
+            <form>
+                
+            </form>
+
         </main>
     )
 }
