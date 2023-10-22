@@ -19,7 +19,10 @@ export const Login = () =>{
     const handleSubmit = async (e) =>{
         e.preventDefault(); 
         try{
-            const response = await getUser(email, password); 
+            const user = {
+                email, password 
+            }
+            const response = await getUser(user); 
             sessionStorage.setItem('email', email);
             sessionStorage.setItem('password', password);
 
