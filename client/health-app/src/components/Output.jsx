@@ -1,7 +1,8 @@
 import React, { useState } from 'react'; 
 import { Link } from 'react-router-dom'; 
+import { getLearn } from '../api'; 
 
-export const Main = () =>{
+export const Output = () =>{
 
     return(
       <main className="">
