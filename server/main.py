@@ -22,6 +22,13 @@ database = database["users"]
 
 
 def get_combined(user): 
+    user_data = database.find_one({"email": user})
+    return jsonify({"height": user_data["height"], "weight" : user_data["weight"], "age": user_data["age"], "familyHistory" : user_data["familyHistory"]})
+
+def apply_ml(user): 
+    pass 
+
+def return_ml():
     pass
 
 def return_combined(): 
@@ -128,7 +135,11 @@ def options_user():
 
 @app.route('/users/getCongregate/<user>', mehtods=['GET'])
 def get_congregate(user): 
-    pass
+    return get_combined(user)
+
+@app.route('/users/getLearn/<user>', methods=['GET'])
+def get_learn(user): 
+    return
     
 
 
