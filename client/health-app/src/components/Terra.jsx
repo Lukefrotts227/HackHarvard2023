@@ -4,7 +4,8 @@ export const TerraAuth = () =>{
 
     return(
         <main>
-            
+            <div> 
+            </div> 
         </main>
         )
 }

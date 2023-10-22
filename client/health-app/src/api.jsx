@@ -1,32 +1,55 @@
+{/*api.jsx*/}
 import axios from 'axios'; 
 const API_URL = 'http://localhost:5000';
 
-export const createUser = async(user) =>{
+export const createUser = async (user) =>{
     const response = await axios.post(`${API_URL}/users/createUser`, user); 
     return response; 
 }
-export const getUser = async(user)=>{
-    const response = await axios.post(`${API_URL}/users/getUser`, {user}, {withCredentials: true});
+
+
+export const getUser = async (user) =>{
+    const response = await axios.post(`${API_URL}/users/login`, user); 
+    return response; 
+}
+
+export const setWeight = async (user, weight) => {
+    const response = await axios.post(`${API_URL}/users/setWeight/${user}`, { weight: weight }, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    return response;
+}
+
+export const setHeight = async (user, height) => {
+    const response = await axios.post(`${API_URL}/users/setHeight/${user}`, { height: height }, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
     return response;
 }
 
 
-export const setWeight = async (user,weight)=>{
-    const response = await axios.post(`${API_URL}/users/setWeight/${user}`, weight); 
-    return response; 
-}; 
-export const setHeight = async (user,height) =>{
-    const response = await axios.post(`${API_URL}/users/setHeight/${user}`, height); 
-    return response; 
-}; 
-export const setAge = async (user,age)=>{
-    const response = await axios.post(`${API_URL}/users/setAge/${user}`, age); 
-    return response; 
-}; 
-export const setFamilyHistory = async (user,familyHistory) =>{
-    const response = await axios.post(`${API_URL}/users/setFamilyHistory/${user}`, familyHistory); 
-    return response; 
-}; 
+export const setAge = async (user, age) => {
+    const response = await axios.post(`${API_URL}/users/setAge/${user}`, { age: age }, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    return response;
+}
+
+
+export const setFamilyHistory = async (user, familyHistory) => {
+    const response = await axios.post(`${API_URL}/users/setFamilyHistory/${user}`, { familyHistory: familyHistory }, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    return response;
+}
 
 export const getWeight = async (user)=>{
     const response = await axios.get(`${API_URL}/users/getWeight/${user}`); 
@@ -62,3 +85,22 @@ export const setUserID = async (user) =>{
     const response = await axios.get(`${API_URL}/users/setUserID/${user}`)
     return response
 }
+
+export const getCongregate = async (user) =>{
+    const response = await axios.get(`${API_URL}/users/getCongregate/${user}`); 
+    return response; 
+}
+export const getLearn = async (user) =>{
+    const reponse = await axios.get(`${API_URL}/users/getLearn/${user}`)
+    return response; 
+}
+
+export const getData = async () =>{
+    const response = await axios.get(`${API_URL}/direct/getData`); 
+    return response
+}
+
+export const sendData = async (data) => {
+    const response = await axios.get(`${API_URL}/direct/sendData`); 
+    return response
+}; 
