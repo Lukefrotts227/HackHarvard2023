@@ -137,7 +137,7 @@ def get_name(user):
 def options_user():
     return '', 200
 
-@app.route('/users/getCongregate/<user>', mehtods=['GET'])
+@app.route('/users/getCongregate/<user>', methods=['GET'])
 def get_congregate(user): 
     return get_combined(user)
 

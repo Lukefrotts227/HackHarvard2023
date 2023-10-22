@@ -104,3 +104,20 @@ export const sendData = async (data) => {
     const response = await axios.get(`${API_URL}/direct/sendData`); 
     return response
 }; 
+
+export const options = {
+    method: 'POST',
+    url: 'https://api.tryterra.co/v2/auth/generateWidgetSession',
+    headers: {
+      accept: 'application/json',
+      'dev-id': 'testingTerra',
+      'content-type': 'application/json',
+      'x-api-key': 'ussv5SAQ53a1nNTxsMr9G41zj2KUhYMk5eDU1hjG'
+    },
+    data: {
+      providers: 'FREESTYLELIBRE',
+      language: 'en',
+      use_terra_avengers_app: false
+    }
+  };
+  
