@@ -5,6 +5,8 @@ from db import get_mongo_db_collection
 
 database = get_mongo_db_collection()
 
+
+
 try:
     database.command('ping')
     print('succeful ping')
@@ -19,6 +21,11 @@ CORS(app, origins=["http://127.0.0.1:5173"], supports_credentials=True)
 database = database["users"]
 
 
+def get_combined(user): 
+    pass
+
+def return_combined(): 
+    pass
 
 @app.route('/users/createUser', methods=['POST'])
 def create_user():     
@@ -119,6 +126,11 @@ def get_name(user):
 @app.route('/users/getUser', methods=['OPTIONS'])
 def options_user():
     return '', 200
+
+@app.route('/users/getCongregate/<user>', mehtods=['GET'])
+def get_congregate(user): 
+    pass
+    
 
 
 
