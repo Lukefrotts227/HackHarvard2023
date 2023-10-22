@@ -20,10 +20,13 @@ CORS(app, origins=["http://127.0.0.1:5173"], supports_credentials=True)
 
 database = database["users"]
 
+def get_bmi(height, weight): 
+    return (weight *703) / (height**2)
+
 
 def get_combined(user): 
     user_data = database.find_one({"email": user})
-    return jsonify({"height": user_data["height"], "weight" : user_data["weight"], "age": user_data["age"], "familyHistory" : user_data["familyHistory"]})
+    return jsonify({"BMI": get_bmi(user_data['height'], user_data['weight']), "age": user_data["age"], "familyHistory" : user_data["familyHistory"]})
 
 def apply_ml(user): 
     pass 
@@ -33,6 +36,7 @@ def return_ml():
 
 def return_combined(): 
     pass
+
 
 @app.route('/users/createUser', methods=['POST'])
 def create_user():     
